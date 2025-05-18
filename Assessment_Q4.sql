@@ -1,6 +1,10 @@
 -- ==========================================
 -- Question 4: [Estimating customer lifetime value (CLV)]
--- Description: []
+-- Description: [For each customer, assuming the profit_per_transaction is 0.1% of the transaction value, calculate:
+				-- Account tenure (months since signup)
+				-- Total transactions
+				-- Estimated CLV (Assume: CLV = (total_transactions / tenure) * 12 * avg_profit_per_transaction)
+				-- Order by estimated CLV from highest to lowest]
 -- Author: Lady Pearl Ampomah Opoku
 -- Date: 2025-05-18
 -- ==========================================
