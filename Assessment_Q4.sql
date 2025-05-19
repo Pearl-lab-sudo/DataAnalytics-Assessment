@@ -1,10 +1,10 @@
 -- ==========================================
--- Question 4: [Estimating customer lifetime value (CLV)]
--- Description: [For each customer, assuming the profit_per_transaction is 0.1% of the transaction value, calculate:
+-- Question 4: Estimating customer lifetime value (CLV)
+-- Description: For each customer, assuming the profit_per_transaction is 0.1% of the transaction value, calculate:
 				-- Account tenure (months since signup)
 				-- Total transactions
 				-- Estimated CLV (Assume: CLV = (total_transactions / tenure) * 12 * avg_profit_per_transaction)
-				-- Order by estimated CLV from highest to lowest]
+				-- Order by estimated CLV from highest to lowest
 -- Author: Lady Pearl Ampomah Opoku
 -- Date: 2025-05-18
 -- ==========================================
@@ -16,8 +16,8 @@ WITH transaction_summary AS (
     SELECT 
         owner_id,
         COUNT(*) AS total_transactions,
-        SUM(confirmed_amount * 0.001) AS total_profit,
-        AVG(confirmed_amount * 0.001) AS avg_profit_per_transaction
+        SUM(confirmed_amount * 0.001) AS total_profit, -- Find total profit per confirmed_amount
+        AVG(confirmed_amount * 0.001) AS avg_profit_per_transaction -- Find average total profit per transaction
     FROM savings_savingsaccount
     WHERE transaction_status IN ('success', 'reward') 
     GROUP BY owner_id
@@ -28,7 +28,7 @@ user_tenure AS (
     SELECT 
         id AS customer_id,
         CONCAT(first_name, ' ', last_name) AS name,
-        TIMESTAMPDIFF(MONTH, date_joined, CURDATE()) AS tenure_months
+        TIMESTAMPDIFF(MONTH, date_joined, CURDATE()) AS tenure_months -- Find difference in moths between date_joined and current date
     FROM users_customuser
 )
 
