@@ -1,6 +1,6 @@
 -- ==========================================
--- Question 2: [Categorizing transaction frequency]
--- Description: [Calculate the average number of transactions per customer per month and categorize them]
+-- Question 2: Categorizing transaction frequency
+-- Description: Calculate the average number of transactions per customer per month and categorize them
 -- Author: Lady Pearl Ampomah Opoku
 -- Date: 2025-05-18
 -- ==========================================
@@ -11,11 +11,11 @@
 WITH monthly_transactions AS (
     SELECT 
         owner_id,
-        DATE_FORMAT(transaction_date, '%Y-%m-01') AS month,
+        DATE_FORMAT(transaction_date, '%Y-%m-01') AS month, -- Extract month from date
         COUNT(*) AS transactions_per_month
     FROM savings_savingsaccount
     WHERE transaction_status = 'success'
-    GROUP BY owner_id, DATE_FORMAT(transaction_date, '%Y-%m-01')
+    GROUP BY owner_id, month
 ),
 
 -- CTE to compute the average number of monthly transactions per user
